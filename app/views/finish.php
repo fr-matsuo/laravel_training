@@ -50,6 +50,6 @@ function sendDBModule($pdo, $post_data) {
     $result = $query->execute();
 }
 
-sendPOST2DB($_POST);
+//sendPOST2DB($_POST);
 
 include('finish.html.php');
