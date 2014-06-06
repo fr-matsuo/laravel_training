@@ -11,28 +11,26 @@
 |
 */
 
-Route::get('/', function()
-{
+Route::get('/', function() {
 	return View::make('hello');
-});
+} );
 
-Route::get('users', function()
-{
+Route::get('users', function() {
     return View::make('user');
-});
+} );
 
-Route::get('form_index', function(){
+Route::get('form_index', function() {
     return View::make('index');
-});
+} );
 
-Route::match(array('GET', 'POST'), 'form_form', function(){
+Route::match(array('GET', 'POST'), 'form_form', function() {
     return View::make('form');
-});
+} );
 
-Route::post('form_formCheck', function(){
+Route::post('form_formCheck', function() {
     return View::make('formCheck');
-});
+} );
 
-Route::post('form_finish', function(){
+Route::post('form_finish', function() {
     return View::make('finish');
-});
+} );
