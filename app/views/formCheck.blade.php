@@ -22,7 +22,7 @@
     
     <p>ご意見:よろしくお願いします</p>
     
-    <input type="submit" value="送信" formaction="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_finish">
-    <input type="submit" value="戻る" formaction="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_form">
+    <input type="submit" value="送信" formaction="finish">
+    <input type="submit" value="戻る" formaction="form">
   </form>
 @stop

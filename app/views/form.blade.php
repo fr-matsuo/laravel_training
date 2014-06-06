@@ -7,7 +7,7 @@
 @section('context')
   <h1>フォーム>入力</h1>
 
-  <form action="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_formCheck" method="post">
+  <form action="formCheck" method="post">
 
     <fieldset>
       <legend>フォーム</legend>

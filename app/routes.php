@@ -19,18 +19,22 @@ Route::get('users', function() {
     return View::make('user');
 } );
 
-Route::get('form_index', function() {
-    return View::make('index');
-} );
+Route::group(array('prefix' => 'form'), function() {
 
-Route::match(array('GET', 'POST'), 'form_form', function() {
-    return View::make('form');
-} );
+    Route::get('index', function() {
+        return View::make('index');
+    } );
 
-Route::post('form_formCheck', function() {
-    return View::make('formCheck');
-} );
+    Route::match(array('GET', 'POST'), 'form', function() {
+        return View::make('form');
+    } );
 
-Route::post('form_finish', function() {
-    return View::make('finish');
+    Route::post('formCheck', function() {
+        return View::make('formCheck');
+    } );
+
+    Route::post('finish', function() {
+        return View::make('finish');
+    } );
+    
 } );
