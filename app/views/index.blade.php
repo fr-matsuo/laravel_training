@@ -1,16 +1,11 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>トップページ</title>
-</head>
+@title
+    トップページ
+@stop
 
-<body>
+@section('context')
   <h1>フォーム>TOPページ</h1>
 
-  <p><a href="form.html">フォームを入力する</a></p>
-
-  <p>Copyright 2014</p>
-</body>	
-</html>
+  <p><a href="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_form">フォームを入力する</a></p>
+@stop

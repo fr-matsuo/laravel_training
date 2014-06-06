@@ -1,15 +1,13 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>確認画面</title>
-</head>
+@title
+    確認画面
+@stop
 
-<body>
+@section('context')
   <h1>フォーム>確認</h1>
   
-  <form>
+  <form method="post">
     <p>名前：山田太郎</p>
     
     <p>性別:男性</p>
@@ -24,9 +22,7 @@
     
     <p>ご意見:よろしくお願いします</p>
     
-    <input type="submit" value="戻る" formaction="form.html">
-    <input type="submit" value="送信" formaction="finish.html">
+    <input type="submit" value="送信" formaction="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_finish">
+    <input type="submit" value="戻る" formaction="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_form">
   </form>
-  <p>Copyright 2014</p>
-</body>
-</html>
+@stop

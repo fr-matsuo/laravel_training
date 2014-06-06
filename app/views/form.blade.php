@@ -1,15 +1,14 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<html>
-<head>
-  <meta charset="UTF-8">
+@title
   <title>フォーム画面</title>
-</head>
+@stop
 
-<body>
+@section('context')
   <h1>フォーム>入力</h1>
 
-  <form action="formCheck.html">
+  <form action="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_formCheck" method="post">
+
     <fieldset>
       <legend>フォーム</legend>
       
@@ -57,6 +56,4 @@
       <input type="submit" value="確認">
     </fieldset>
   </form>
-  <p>Copyright 2014</p>
-</body>
-</html>
+@stop
