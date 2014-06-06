@@ -15,7 +15,7 @@
 
   <nav>
     応募しました
-    <p><a href="index.php">TOPページへ</a><p>
+    <p><a href="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_index">TOPページへ</a><p>
   </nav>
 
   <footer>

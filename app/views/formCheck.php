@@ -1,6 +1,6 @@
 <?php
 require_once('format_text.php');
-$formated_post = getFormatedTextArray($_POST);
+$formated_post = getFormatedTextArray(Input::get());
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ $formated_post = getFormatedTextArray($_POST);
   </header>
 
   <section>
-    <form name="form" method="post" action="finish.php">
+    <form name="form" method="post" action="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_finish.php">
       <p>
         名前：
         <?php
@@ -77,7 +77,7 @@ $formated_post = getFormatedTextArray($_POST);
       <input type="button" value="戻る" onClick="form.action=document.returnForm.submit();">
     </form>  
     
-    <form name="sendForm" method="post" action="finish.php">
+    <form name="sendForm" method="post" action="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_finish">
       <input type='hidden' name='name_first'     value="<?php printf('%s', $formated_post['name_first']);   ?>">
       <input type='hidden' name='name_last'      value="<?php printf('%s', $formated_post['name_last']);    ?>">
       <input type='hidden' name='sex'            value="<?php printf('%s', $formated_post['sex']);          ?>">
@@ -96,7 +96,7 @@ $formated_post = getFormatedTextArray($_POST);
       <input type='hidden' name='opinion'        value="<?php printf('%s', $formated_post['opinion']);        ?>">
     </form>
 
-    <form name="returnForm" method="post" action="form.php">
+    <form name="returnForm" method="post" action="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_form">
       <input type='hidden' name='name_first'     value="<?php printf('%s', $formated_post['name_first']);   ?>">
       <input type='hidden' name='name_last'      value="<?php printf('%s', $formated_post['name_last']);    ?>">
       <input type='hidden' name='sex'            value="<?php printf('%s', $formated_post['sex']);          ?>">

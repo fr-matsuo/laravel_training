@@ -15,7 +15,7 @@
 </header>
 
 <section>
-  <form method="post" name="form" action="form.php">
+  <form method="post" name="form" action="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_form">
     <fieldset>
     <legend>フォーム</legend>
 
@@ -56,7 +56,7 @@
 
   <?php showError($formated_post); ?>
 
-  <form method="post" name="checkForm" action="formCheck.php">
+  <form method="post" name="checkForm" action="http://ec2-54-248-253-82.ap-northeast-1.compute.amazonaws.com/form_formCheck">
   <?php writeHiddenParams($formated_post, $NAMES); ?>
   </form>
 

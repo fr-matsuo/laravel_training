@@ -12,7 +12,7 @@ $NAMES = array(
     'prefecture','mail_address', 'other_descript', 'opinion'
 );
 
-$formated_post = getFormatedTextArray($_POST);
+$formated_post = getFormatedTextArray(Input::get());
 
 $man_checked   = (getPOST('sex', $formated_post) == "男性")? "checked" : "";
 $woman_checked = (getPOST('sex', $formated_post) == "女性")? "checked" : "";
@@ -148,7 +148,7 @@ function showPOST($key, $post_data) {
 }
 
 function showPrefectures() {
-    Prefecture_Data::constructSelectBox(getPOST('prefecture',$_POST));
+    Prefecture_Data::constructSelectBox(getPOST('prefecture',Input::get()));
 }
 
 function showHobbys($post_data, $hobby_list) {
