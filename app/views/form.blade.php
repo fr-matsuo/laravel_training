@@ -8,58 +8,51 @@
 
 @section('context')
   <h1>フォーム>入力</h1>
-
-  <form action="formCheck" method="post">
-
+  
+  {{ Form::open(array('url' => 'form/formCheck')) }}
+    
     <fieldset>
       <legend>フォーム</legend>
       
-      <label>名前:</label>
-      <input type="text" name="name_first" id="name_first" value={{{ Input::get('name_first') }}}>
-      <input type="text" name="name_last" id="name_last" value={{{ Input::get('name_last') }}}> 
+      {{ Form::label('name_label', '名前:') }}
+      {{ Form::text('name_first', Input::get('name_first')) }}
+      {{ Form::text('name_last', Input::get('name_last')) }}
       <br> 
 
-      <label>性別:</label>
-      <input type="radio" name="sex" id="man" value="男性"
-        {{{ getSelectedText(Input::get('sex'), '男性', 'checked') }}}><label for="man">男性</label>
-      <input type="radio" name="sex" id="woman" value="女性"
-        {{{ getSelectedText(Input::get('sex'), '女性', 'checked') }}}><label for="woman">女性</label>
+      {{ Form::label('sex_label', '性別:') }}
+
+      {{ Form::radio('sex', '男性', getSelectedText(Input::get('sex'), '男性', true)) }}
+      {{ '男性' }}
+      {{ Form::radio('sex', '女性', getSelectedText(Input::get('sex'), '女性', true)) }}
+      {{ '女性' }}
       <br>
 
-      <label>郵便番号:</label>
-      <input type="text" name="post_first" id="post_first" value={{{ Input::get('post_first') }}}>
-      -
-      <input type="text" name="post_last" id="post_last" value={{{ Input::get('post_first') }}}>
+      {{ Form::label('post_label', '郵便番号:') }}
+      {{ Form::text('post_first', Input::get('post_first')) }}
+      {{ Form::text('post_last', Input::get('post_last')) }}
       <br>
 
-      <label>都道府県:</label>
-      <select name="prefecture" id="prefecture" size=1 value={{{ Input::get('prefecture') }}}>
-        <option id="--" value="--">--</option>
-        <option id="Tokyo" value="東京都" {{{ getSelectedText(Input::get('prefecture'), '東京都', 'selected') }}}>東京都</option>
-        <option id="Saitama" value="埼玉県" {{{ getSelectedText(Input::get('prefecture'), '埼玉県', 'selected') }}}>埼玉県</option>
-        <option id="Gunma" value="群馬県" {{{ getSelectedText(Input::get('prefecture'), '群馬県', 'selected') }}}>群馬県</option>
-      </select>
+      {{ Form::label('prefecture_label', '都道府県:') }}
+      {{ Form::select('prefecture', $PREFECTURES, Input::get('prefecture')) }}
       <br>
 
-      <label>メールアドレス:</label>
-      <input type="text" name="mail_address" id="mail" value={{{ Input::get('mail_address') }}}>
+      {{ Form::label('email_label', 'メールアドレス:')}}
+      {{ Form::text('mail_address', Input::get('mail_address')) }}
       <br>
 
-      <label>趣味</label>
-        <input type="checkbox" name="hobby[]" id="music" value="音楽鑑賞"
-          {{{ getSelectedText(Input::get('hobby'), '音楽鑑賞', 'checked') }}}><label for="music">音楽鑑賞</label>
-        <input type="checkbox" name="hobby[]" id="movie" value="映画鑑賞"
-          {{{ getSelectedText(Input::get('hobby'), '映画鑑賞', 'checked') }}}><label for="movie">映画鑑賞</label>
-        <input type="checkbox" name="hobby[]" id="other" value="その他"
-          {{{ getSelectedText(Input::get('hobby'), 'その他', 'checked') }}}><label for="other">その他</label>
-        <input type="text" name="other_descript" id="other_descript" value={{{ Input::get('other_descript') }}}>
+      {{ Form::label('hobby_label', '趣味:')}}
+      @foreach ($HOBBYS as $hobby)
+        {{ Form::checkbox('hobby[]', $hobby, getSelectedText(Input::get('hobby'), $hobby, true)) }}
+        {{ Form::label('hobby_label', $hobby) }}
+      @endforeach
+      {{ Form::text('other_descript', Input::get('other_descript')) }}
       <br>
 
-      <label>ご意見</label>
-      <input type="text" id="opinion" name="opinion" value={{{ Input::get('opinion') }}}></textarea>
+      {{ Form::label('opinion_label', 'ご意見:')}}
+      {{ Form::text('opinion', Input::get('opinion')) }}
       <br>
 
-      <input type="submit" value="確認">
+      {{ Form::submit('確認') }}
     </fieldset>
-  </form>
+  {{ Form::close() }}
 @stop

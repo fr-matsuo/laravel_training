@@ -64,7 +64,7 @@
     <input type="hidden" name="name_last" value={{{ Input::get('name_last') }}}>
     <input type="hidden" name="sex" value={{{ Input::get('sex') }}}>
     <input type="hidden" name="post_first" value={{{ Input::get('post_first') }}}>
-    <input type="hidden" name="post_first" value={{{ Input::get('post_last') }}}>
+    <input type="hidden" name="post_last" value={{{ Input::get('post_last') }}}>
     <input type="hidden" name="prefecture" value={{{ Input::get('prefecture') }}}>
     <input type="hidden" name="mail_address" value={{{ Input::get('mail_address') }}}>
     @if (empty(Input::get('hobby')) == false)
