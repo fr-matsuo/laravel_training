@@ -11,7 +11,30 @@
 |
 */
 
-Route::get('/', function()
-{
+Route::get('/', function() {
 	return View::make('hello');
-});
+} );
+
+Route::get('users', function() {
+    return View::make('user');
+} );
+
+Route::group(array('prefix' => 'form'), function() {
+
+    Route::get('index', function() {
+        return View::make('index');
+    } );
+
+    Route::match(array('GET', 'POST'), 'form', function() {
+        return View::make('form');
+    } );
+
+    Route::post('formCheck', function() {
+        return View::make('formCheck');
+    } );
+
+    Route::post('finish', function() {
+        return View::make('finish');
+    } );
+    
+} );
