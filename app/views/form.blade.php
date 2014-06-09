@@ -1,3 +1,5 @@
+<?php require_once('form_logic.php'); ?>
+
 @extends('layout')
 
 @section('title')
@@ -18,8 +20,10 @@
       <br> 
 
       <label>性別:</label>
-      <input type="radio" name="sex" id="man" value="男性"><label for="man">男性</label>
-      <input type="radio" name="sex" id="woman" value="女性"><label for="woman">女性</label>
+      <input type="radio" name="sex" id="man" value="男性"
+        {{{ getSelectedText(Input::get('sex'), '男性', 'checked') }}}><label for="man">男性</label>
+      <input type="radio" name="sex" id="woman" value="女性"
+        {{{ getSelectedText(Input::get('sex'), '女性', 'checked') }}}><label for="woman">女性</label>
       <br>
 
       <label>郵便番号:</label>
@@ -31,9 +35,9 @@
       <label>都道府県:</label>
       <select name="prefecture" id="prefecture" size=1 value={{{ Input::get('prefecture') }}}>
         <option id="--" value="--">--</option>
-        <option id="Tokyo" value="東京都">東京都</option>
-        <option id="Saitama" value="埼玉県">埼玉県</option>
-        <option id="Gunma" value="群馬県">群馬県</option>
+        <option id="Tokyo" value="東京都" {{{ getSelectedText(Input::get('prefecture'), '東京都', 'selected') }}}>東京都</option>
+        <option id="Saitama" value="埼玉県" {{{ getSelectedText(Input::get('prefecture'), '埼玉県', 'selected') }}}>埼玉県</option>
+        <option id="Gunma" value="群馬県" {{{ getSelectedText(Input::get('prefecture'), '群馬県', 'selected') }}}>群馬県</option>
       </select>
       <br>
 
@@ -42,15 +46,17 @@
       <br>
 
       <label>趣味</label>
-        <input type="checkbox" name="hobby[]" id="music" value="音楽鑑賞"><label for="music">音楽鑑賞</label>
-        <input type="checkbox" name="hobby[]" id="movie" value="映画鑑賞"><label for="movie">映画鑑賞</label>
-        <input type="checkbox" name="hobby[]" id="other" value="その他"><label for="other">その他</label>
-        <input type="text" name="other_descript" id="other_descript">
-      </label>
+        <input type="checkbox" name="hobby[]" id="music" value="音楽鑑賞"
+          {{{ getSelectedText(Input::get('hobby'), '音楽鑑賞', 'checked') }}}><label for="music">音楽鑑賞</label>
+        <input type="checkbox" name="hobby[]" id="movie" value="映画鑑賞"
+          {{{ getSelectedText(Input::get('hobby'), '映画鑑賞', 'checked') }}}><label for="movie">映画鑑賞</label>
+        <input type="checkbox" name="hobby[]" id="other" value="その他"
+          {{{ getSelectedText(Input::get('hobby'), 'その他', 'checked') }}}><label for="other">その他</label>
+        <input type="text" name="other_descript" id="other_descript" value={{{ Input::get('other_descript') }}}>
       <br>
 
       <label>ご意見</label>
-      <textarea id="opinion" name="opinion"></textarea>
+      <input type="text" id="opinion" name="opinion" value={{{ Input::get('opinion') }}}></textarea>
       <br>
 
       <input type="submit" value="確認">

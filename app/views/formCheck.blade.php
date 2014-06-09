@@ -46,7 +46,7 @@
       {{  ' ' }}
       @endforeach
 
-      @if ( in_array('other', Input::get('hobby')) )
+      @if ( in_array('その他', Input::get('hobby')) )
       {{  '(' }}
       {{{ Input::get('other_descript') }}}
       {{  ')' }}
@@ -60,13 +60,20 @@
       {{{ Input::get('opinion') }}}
     </p>
     
-    <input type="hidden" name="name_first" value={{{Input::get('name_first')}}}>
-    <input type="hidden" name="name_last" value={{{Input::get('name_last')}}}>
-    <input type="hidden" name="sex" value={{{Input::get('sex')}}}>
-    <input type="hidden" name="post_first" value={{{Input::get('post_first')}}}>
-    <input type="hidden" name="post_first" value={{{Input::get('post_last')}}}>
-    <input type="hidden" name="mail_address" value={{{Input::get('mail_address')}}}>
-
+    <input type="hidden" name="name_first" value={{{ Input::get('name_first') }}}>
+    <input type="hidden" name="name_last" value={{{ Input::get('name_last') }}}>
+    <input type="hidden" name="sex" value={{{ Input::get('sex') }}}>
+    <input type="hidden" name="post_first" value={{{ Input::get('post_first') }}}>
+    <input type="hidden" name="post_first" value={{{ Input::get('post_last') }}}>
+    <input type="hidden" name="prefecture" value={{{ Input::get('prefecture') }}}>
+    <input type="hidden" name="mail_address" value={{{ Input::get('mail_address') }}}>
+    @if (empty(Input::get('hobby')) == false)
+    @foreach (Input::get('hobby') as $hobby)
+    <input type="hidden" name="hobby[]" value={{{ $hobby }}}>
+    @endforeach
+    @endif
+    <input type="hidden" name="other_descript" value={{{ Input::get('other_descript') }}}>
+    <input type="hidden" name="opinion" value={{{ Input::get('opinion') }}}>
     <input type="submit" value="送信" formaction="finish">
     <input type="submit" value="戻る" formaction="form">
   </form>
