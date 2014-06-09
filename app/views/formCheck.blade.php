@@ -1,7 +1,7 @@
 @extends('layout')
 
-@title
-    確認画面
+@section('title')
+  確認画面
 @stop
 
 @section('context')

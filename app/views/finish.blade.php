@@ -1,7 +1,7 @@
 @extends('layout')
 
-@title
-    完了
+@section('title')
+  完了
 @stop
 
 @section('context')

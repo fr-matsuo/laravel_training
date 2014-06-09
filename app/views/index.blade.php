@@ -1,7 +1,7 @@
 @extends('layout')
 
-@title
-    トップページ
+@section('title')
+  トップページ
 @stop
 
 @section('context')

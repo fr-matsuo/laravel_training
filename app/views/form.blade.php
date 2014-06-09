@@ -1,6 +1,6 @@
 @extends('layout')
 
-@title
+@section('title')
   <title>フォーム画面</title>
 @stop
 
