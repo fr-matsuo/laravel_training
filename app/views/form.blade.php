@@ -22,9 +22,9 @@
       {{ Form::label('sex_label', '性別:') }}
 
       {{ Form::radio('sex', '男性', getSelectedText(Input::get('sex'), '男性', true)) }}
-      {{ '男性' }}
+      {{ Form::label('sex_label', '男性') }}
       {{ Form::radio('sex', '女性', getSelectedText(Input::get('sex'), '女性', true)) }}
-      {{ '女性' }}
+      {{ Form::label('sex_label', '女性') }}
       <br>
 
       {{ Form::label('post_label', '郵便番号:') }}
