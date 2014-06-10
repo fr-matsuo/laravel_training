@@ -37,12 +37,12 @@
   
   <p>
     趣味:
-    @if ( empty(Input::get('hobby')) == false ) 
+    @if (empty(Input::get('hobby')) == false) 
       @foreach (Input::get('hobby') as $hobby) 
         {{{ $hobby }}}
       @endforeach
 
-      @if ( in_array('その他', Input::get('hobby')) )
+      @if (in_array('その他', Input::get('hobby')))
         {{  '(' }}
         {{{ Input::get('other_descript') }}}
         {{  ')' }}
