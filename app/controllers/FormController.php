@@ -1,4 +1,8 @@
 <?php
+
+require_once('/home/ec2-user/public_html/laravel_training/public/formCheck_logic.php');
+
+
 class FormController extends BaseController {
     public function getIndex() {
         return View::make('index');
@@ -13,7 +17,7 @@ class FormController extends BaseController {
     }
 
     public function postFormcheck() {
-        return View::make('formCheck');
+        return confirm();
     }
 
     public function postFinish() {
