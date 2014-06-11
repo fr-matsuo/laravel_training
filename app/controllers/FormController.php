@@ -4,6 +4,11 @@ require_once('/home/ec2-user/public_html/laravel_training/public/formCheck_logic
 
 
 class FormController extends BaseController {
+
+    public function __construct() {
+        $this->beforeFilter('csrf', ['on' => 'post']);
+    }
+
     public function getIndex() {
         return View::make('index');
     }
