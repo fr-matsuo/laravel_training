@@ -1,3 +1,5 @@
+<?php require_once('/home/ec2-user/public_html/laravel_training/public/formCheck_logic.php'); ?>
+
 @extends('layout')
 
 @section('title')
@@ -27,7 +29,7 @@
   
   <p>
     都道府県:
-    {{{ Input::get('prefecture') }}}
+    {{{ $PREFECTURES[Input::get('prefecture')] }}}
   </p>
   
   <p>
