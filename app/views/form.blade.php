@@ -1,5 +1,3 @@
-<?php require_once app_path().'/helpers.php'; ?>
-
 @extends('layout')
 
 @section('title')
