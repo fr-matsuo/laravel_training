@@ -108,15 +108,4 @@ class FormController extends BaseController {
 
         DB::table($table)->insert($record);
     }
-
-    function showTable($table) {
-        $mat = DB::table($table)->get();
-
-        foreach ($mat as $record) {
-            print "<br>";
-            foreach($record as $data) {
-                printf("%s\t", $data);
-            }
-        }
-    }
 }

@@ -15,15 +15,15 @@ function getSelectedText($input, $search, $return) {
 
     return '';
 }
-/*
-function loadPrefectures() {
-    $mat = DB::table('prefecture_info')->get();
-    $retArray = array(0 => '--');
-    foreach ($mat as $record) {
-        $add = array($record->pref_id => $record->pref_name);
-        $retArray = array_merge($retArray, $add);
-    }
 
-    return $retArray;
+//DB表示確認用、現在未使用
+function showTable($table) {
+    $mat = DB::table($table)->get();
+
+    foreach ($mat as $record) {
+        print "<br>";
+        foreach($record as $data) {
+            printf("%s\t", $data);
+        }
+    }
 }
-*/
