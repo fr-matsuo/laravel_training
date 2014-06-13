@@ -1,7 +1,5 @@
 @extends('layout')
 
-<?php require_once('/home/ec2-user/public_html/laravel_training/public/finish_logic.php'); ?>
-
 @section('title')
   完了
 @stop

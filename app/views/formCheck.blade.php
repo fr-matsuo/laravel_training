@@ -1,5 +1,3 @@
-<?php require_once('/home/ec2-user/public_html/laravel_training/public/formCheck_logic.php'); ?>
-
 @extends('layout')
 
 @section('title')

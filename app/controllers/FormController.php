@@ -1,11 +1,13 @@
 <?php
 
 class FormController extends BaseController {
-    //セレクトボックスの配列は、表示されている値→要素・渡される値→キー っぽいので 渡したい値 => 表示する値
-    public $PREFECTURES = array('--' => '--', '東京都' => '東京都', '埼玉県' => '埼玉県', '群馬県' => '群馬県');
-    public $HOBBYS      = array('music' => '音楽鑑賞', 'movie' => '映画鑑賞', 'other' => 'その他');
+    //ここで代入すると何故か文法エラー
+    public $PREFECTURES;//  = $this->_loadPrefectures();
+    public $HOBBYS       = array('music' => '音楽鑑賞', 'movie' => '映画鑑賞', 'other' => 'その他');
 
     public function __construct() {
+        $this->PREFECTURES = $this->_loadPrefectures();
+
         $this->beforeFilter('csrf', ['on' => 'post']);
         $this->share();
     }
@@ -28,14 +30,21 @@ class FormController extends BaseController {
     }
 
     public function postFormcheck() {
-        return $this->confirm();
+        return $this->_confirm();
     }
 
     public function postFinish() {
+        $this->_addRecord(
+            'account_info',
+            Input::get('name_first'),
+            Input::get('name_last'),
+            Input::get('mail_address'),
+            Input::get('prefecture')
+        );
         return View::make('finish');
     }
 
-    function confirm() {
+    private function _confirm() {
         $rules = array(
             'name_first'     => array('required', 'max:50'),
             'name_last'      => array('required', 'max:50'),
@@ -76,4 +85,38 @@ class FormController extends BaseController {
         return View::make('formCheck');
     }
 
+    private function _loadPrefectures() {
+        $mat = DB::table('prefecture_info')->get();
+        $retArray = array(0 => '--');
+        foreach ($mat as $record) {
+            $add = array($record->pref_id => $record->pref_name);
+            $retArray = array_merge($retArray, $add);
+        }
+
+        return $retArray;
+    }
+
+    private function _addRecord($table, $name_first, $name_last, $email, $pref_id) {
+        $record = array(
+            'first_name' => $name_first,
+            'last_name'  => $name_last,
+            'email'      => $email,
+            'pref_id'    => $pref_id,
+            'created_at' => date("Y/m/d H:i:s", time()),
+            'updated_at' => date("Y/m/d H:i:s", time())
+        );
+
+        DB::table($table)->insert($record);
+    }
+
+    function showTable($table) {
+        $mat = DB::table($table)->get();
+
+        foreach ($mat as $record) {
+            print "<br>";
+            foreach($record as $data) {
+                printf("%s\t", $data);
+            }
+        }
+    }
 }
