@@ -1,4 +1,4 @@
-<?php require_once('form_logic.php'); ?>
+<?php require_once app_path().'/helpers.php'; ?>
 
 @extends('layout')
 
