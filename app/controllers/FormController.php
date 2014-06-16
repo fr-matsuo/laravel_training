@@ -51,7 +51,7 @@ class FormController extends BaseController {
             'sex'            => array('required'),
             'post_first'     => array('required', 'digits:3'),
             'post_last'      => array('required', 'digits:4'),
-            'prefecture'     => array("not_in:--"),
+            'prefecture'     => array('not_in:0'),
             'mail_address'   => array('required', 'email')
         );
 
