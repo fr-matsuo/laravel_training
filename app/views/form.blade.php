@@ -65,4 +65,6 @@
     </fieldset>
 
   {{ Form::close() }}
+  
+  {{{ $error_message }}}
 @stop

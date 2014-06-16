@@ -21,13 +21,13 @@ class FormController extends BaseController {
     public function getForm() {
         $this->PREFECTURES = $this->_loadPrefectures();
         $this->share();
-        return View::make('form');
+        return View::make('form')->with('error_message', '');
     }
 
     public function postForm() {
         $this->PREFECTURES = $this->_loadPrefectures();
         $this->share();
-        return View::make('form');
+        return View::make('form')->with('error_message', '');
     }
 
     public function postFormcheck() {
@@ -40,7 +40,10 @@ class FormController extends BaseController {
         try {
             $this->_addRecord();
         } catch (Exception $e) {
-            return View::make('form');
+            $this->PREFECTURES = $this->_loadPrefectures();
+            $this->share();
+            $error = 'データベースに登録できませんでした。';
+            return View::make('form')->with('error_message', $error);
         }
         return View::make('finish');
     }
