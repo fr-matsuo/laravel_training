@@ -84,15 +84,15 @@ class FormController extends BaseController {
 
     private function _loadPrefectures() {
         $mat = DB::table('prefecture_info')->get();
-        $retArray = array(0 => '--');
+        $ret_array = array(0 => '--');
         foreach ($mat as $record) {
-            $retArray[$record->pref_id] = $record->pref_name;
+            $ret_array[$record->pref_id] = $record->pref_name;
         }
 
-        return $retArray;
+        return $ret_array;
     }
 
-    private function _toForm($error_message = ''){
+    private function _toForm($error_message = '') {
         $this->PREFECTURES = $this->_loadPrefectures();
         $this->share();
         return View::make('form')->with('error_message', $error_message);
@@ -105,6 +105,7 @@ class FormController extends BaseController {
         $account_info->last_name  = Input::get('name_last');
         $account_info->email      = Input::get('mail_address');
         $account_info->pref_id    = Input::get('prefecture');
+
         $account_info->save();
     }
 }
