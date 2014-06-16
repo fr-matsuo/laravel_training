@@ -2,14 +2,11 @@
 
 class FormController extends BaseController {
     //ここで代入すると何故か文法エラー
-    public $PREFECTURES;//  = $this->_loadPrefectures();
-    public $HOBBYS       = array('music' => '音楽鑑賞', 'movie' => '映画鑑賞', 'other' => 'その他');
+    public $PREFECTURES = NULL;// = $this->_loadPrefectures();
+    public $HOBBYS      = array('music' => '音楽鑑賞', 'movie' => '映画鑑賞', 'other' => 'その他');
 
     public function __construct() {
-        $this->PREFECTURES = $this->_loadPrefectures();
-
         $this->beforeFilter('csrf', ['on' => 'post']);
-        $this->share();
     }
 
     private function share() {
@@ -22,19 +19,29 @@ class FormController extends BaseController {
     }
 
     public function getForm() {
+        $this->PREFECTURES = $this->_loadPrefectures();
+        $this->share();
         return View::make('form');
     }
 
     public function postForm() {
+        $this->PREFECTURES = $this->_loadPrefectures();
+        $this->share();
         return View::make('form');
     }
 
     public function postFormcheck() {
+        $this->PREFECTURES = $this->_loadPrefectures();
+        $this->share();
         return $this->_confirm();
     }
 
     public function postFinish() {
-        $this->_addRecord();
+        try {
+            $this->_addRecord();
+        } catch (Exception $e) {
+            return View::make('form');
+        }
         return View::make('finish');
     }
 
@@ -83,9 +90,12 @@ class FormController extends BaseController {
         $mat = DB::table('prefecture_info')->get();
         $retArray = array(0 => '--');
         foreach ($mat as $record) {
-            $add = array($record->pref_id => $record->pref_name);
-            $retArray = array_merge($retArray, $add);
+            //$add = array($record->pref_id => $record->pref_name);
+            //$retArray = array_merge($retArray, $add);
+            $retArray[$record->pref_id] = $record->pref_name;
         }
+        //var_dump($retArray);
+        //die();
 
         return $retArray;
     }
