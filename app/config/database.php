@@ -51,7 +51,7 @@ return array(
 			'database' => __DIR__.'/../database/production.sqlite',
 			'prefix'   => '',
 		),
-
+        /*
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
@@ -62,7 +62,17 @@ return array(
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
-
+        */
+		'mysql' => array(
+			'driver'    => 'mysql',
+			'host'      => '127.0.0.1',
+			'database'  => 'firstDB',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',

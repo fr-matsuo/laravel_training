@@ -1,13 +1,12 @@
 <?php
 
 class FormController extends BaseController {
-    //セレクトボックスの配列は、表示されている値→要素・渡される値→キー っぽいので 渡したい値 => 表示する値
-    public $PREFECTURES = array('--' => '--', '東京都' => '東京都', '埼玉県' => '埼玉県', '群馬県' => '群馬県');
+    //ここで代入すると何故か文法エラー
+    public $PREFECTURES = NULL;// = $this->_loadPrefectures();
     public $HOBBYS      = array('music' => '音楽鑑賞', 'movie' => '映画鑑賞', 'other' => 'その他');
 
     public function __construct() {
         $this->beforeFilter('csrf', ['on' => 'post']);
-        $this->share();
     }
 
     private function share() {
@@ -20,29 +19,36 @@ class FormController extends BaseController {
     }
 
     public function getForm() {
-        return View::make('form');
+        return $this->_toForm();
     }
 
     public function postForm() {
-        return View::make('form');
+        return $this->_toForm();
     }
 
     public function postFormcheck() {
-        return $this->confirm();
+        $this->PREFECTURES = $this->_loadPrefectures();
+        $this->share();
+        return $this->_confirm();
     }
 
     public function postFinish() {
+        try {
+            $this->_addRecord();
+        } catch (Exception $e) {
+            return $this->_toForm('データベースに登録できませんでした。');
+        }
         return View::make('finish');
     }
 
-    function confirm() {
+    private function _confirm() {
         $rules = array(
             'name_first'     => array('required', 'max:50'),
             'name_last'      => array('required', 'max:50'),
             'sex'            => array('required'),
             'post_first'     => array('required', 'digits:3'),
             'post_last'      => array('required', 'digits:4'),
-            'prefecture'     => array("not_in:--"),
+            'prefecture'     => array('not_in:0'),
             'mail_address'   => array('required', 'email')
         );
 
@@ -76,4 +82,30 @@ class FormController extends BaseController {
         return View::make('formCheck');
     }
 
+    private function _loadPrefectures() {
+        $mat = DB::table('prefecture_info')->get();
+        $ret_array = array(0 => '--');
+        foreach ($mat as $record) {
+            $ret_array[$record->pref_id] = $record->pref_name;
+        }
+
+        return $ret_array;
+    }
+
+    private function _toForm($error_message = '') {
+        $this->PREFECTURES = $this->_loadPrefectures();
+        $this->share();
+        return View::make('form')->with('error_message', $error_message);
+    }
+
+    private function _addRecord() {
+        $account_info = new Account_Info;
+
+        $account_info->first_name = Input::get('name_first');
+        $account_info->last_name  = Input::get('name_last');
+        $account_info->email      = Input::get('mail_address');
+        $account_info->pref_id    = Input::get('prefecture');
+
+        $account_info->save();
+    }
 }

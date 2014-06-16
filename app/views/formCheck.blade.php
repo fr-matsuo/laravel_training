@@ -27,7 +27,7 @@
   
   <p>
     都道府県:
-    {{{ Input::get('prefecture') }}}
+    {{{ $PREFECTURES[Input::get('prefecture')] }}}
   </p>
   
   <p>

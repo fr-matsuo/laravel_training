@@ -1,5 +1,7 @@
 <?php
 
+require_once 'models/Account_Info.php';
+
 //inputにsearchが含まれていたらreturn、なければ''を返す
 function getSelectedText($input, $search, $return) {
     //inputが配列の場合は要素毎に再帰処理

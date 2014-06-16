@@ -8,5 +8,6 @@
   <h1>フォーム>完了</h1>
 
   応募しました
+ 
   <p><a href="index">TOPページへ</a><p>
 @stop
