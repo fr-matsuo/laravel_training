@@ -34,13 +34,7 @@ class FormController extends BaseController {
     }
 
     public function postFinish() {
-        $this->_addRecord(
-            'account_info',
-            Input::get('name_first'),
-            Input::get('name_last'),
-            Input::get('mail_address'),
-            Input::get('prefecture')
-        );
+        $this->_addRecord();
         return View::make('finish');
     }
 
@@ -96,16 +90,13 @@ class FormController extends BaseController {
         return $retArray;
     }
 
-    private function _addRecord($table, $name_first, $name_last, $email, $pref_id) {
-        $record = array(
-            'first_name' => $name_first,
-            'last_name'  => $name_last,
-            'email'      => $email,
-            'pref_id'    => $pref_id,
-            'created_at' => date("Y/m/d H:i:s", time()),
-            'updated_at' => date("Y/m/d H:i:s", time())
-        );
+    private function _addRecord() {
+        $account_info = new Account_Info;
 
-        DB::table($table)->insert($record);
+        $account_info->first_name = Input::get('name_first');
+        $account_info->last_name  = Input::get('name_last');
+        $account_info->email      = Input::get('mail_address');
+        $account_info->pref_id    = Input::get('prefecture');
+        $account_info->save();
     }
 }
