@@ -19,15 +19,11 @@ class FormController extends BaseController {
     }
 
     public function getForm() {
-        $this->PREFECTURES = $this->_loadPrefectures();
-        $this->share();
-        return View::make('form')->with('error_message', '');
+        return $this->_toForm();
     }
 
-    public function postForm($errorMessage = '') {
-        $this->PREFECTURES = $this->_loadPrefectures();
-        $this->share();
-        return View::make('form')->with('error_message', $errorMessage);
+    public function postForm() {
+        return $this->_toForm();
     }
 
     public function postFormcheck() {
@@ -40,7 +36,7 @@ class FormController extends BaseController {
         try {
             $this->_addRecord();
         } catch (Exception $e) {
-            return $this->postForm('データベースに登録できませんでした。');
+            return $this->_toForm('データベースに登録できませんでした。');
         }
         return View::make('finish');
     }
@@ -94,6 +90,12 @@ class FormController extends BaseController {
         }
 
         return $retArray;
+    }
+
+    private function _toForm($error_message = ''){
+        $this->PREFECTURES = $this->_loadPrefectures();
+        $this->share();
+        return View::make('form')->with('error_message', $error_message);
     }
 
     private function _addRecord() {
