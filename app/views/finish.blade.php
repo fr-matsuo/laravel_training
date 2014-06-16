@@ -10,7 +10,7 @@
   
   <?php 
     //account_info出力、動作確認用
-    //showTable('account_info');
+    //showTable();
   ?>
 
   応募しました
