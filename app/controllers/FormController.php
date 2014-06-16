@@ -93,12 +93,8 @@ class FormController extends BaseController {
         $mat = DB::table('prefecture_info')->get();
         $retArray = array(0 => '--');
         foreach ($mat as $record) {
-            //$add = array($record->pref_id => $record->pref_name);
-            //$retArray = array_merge($retArray, $add);
             $retArray[$record->pref_id] = $record->pref_name;
         }
-        //var_dump($retArray);
-        //die();
 
         return $retArray;
     }
