@@ -9,7 +9,7 @@ class FormControllerTest extends TestCase {
         }
         return $this->_controller;
     }
-
+/*
     public function testLoadPrefectures() {
         $PREFECTURES = array(
             0 => '--',
@@ -123,10 +123,30 @@ class FormControllerTest extends TestCase {
 
         //テストデータ箇所を上書き
         $input[$test_column] = $test_data;
-       
+
         $controller = $this->_getController();
         $validator  = $controller->_confirmInput($input);
         $this->assertEquals($isShouldBe, !$validator->fails());
+    }
+    */
 
+    public function testAddRecord() {
+        $input_data = array(
+            'name_first'     => 'add',
+            'name_last'      => 'record',
+            'sex'            => '男性',
+            'post_first'     => '000',
+            'post_last'      => '0000',
+            'mail_address'   => 'test@data.com',
+            'prefecture'     => 44,
+            'other_descript' => '',
+            'opinion'        => ''
+        );
+
+        $response = $this->action('POST', 'FormController@postFinish', $input_data);
+        foreach (Session::all() as $key => $value) {
+            printf("%s -> %s\n", $key, $value);
+        }
+        $this->assertSessionHas('error_message');
     }
 }
