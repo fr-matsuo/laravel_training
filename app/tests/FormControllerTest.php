@@ -144,9 +144,6 @@ class FormControllerTest extends TestCase {
         );
 
         $response = $this->action('POST', 'FormController@postFinish', $input_data);
-        foreach (Session::all() as $key => $value) {
-            printf("%s -> %s\n", $key, $value);
-        }
         $this->assertSessionHas('error_message');
     }
 }
