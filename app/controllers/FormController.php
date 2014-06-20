@@ -31,9 +31,16 @@ class FormController extends BaseController {
     }
 
     public function postFinish() {
+        $input = Input::all();
+        foreach($input as $data){
+            print "\n";
+            var_dump($data);
+        }
+
         try {
             Account_Info::addRecord(Input::all());
         } catch (Exception $e) {
+            print $e->getMessage();
             return $this->toForm('データベースに登録できませんでした。');
         }
         return View::make('finish');

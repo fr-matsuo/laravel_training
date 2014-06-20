@@ -1,6 +1,5 @@
 <?php
 class FormModelTest extends TestCase {
-    
     //DBに登録済みのアカウントデータ
     private $_added_account_data = array(
         'name_first'     => 'add',
@@ -13,7 +12,6 @@ class FormModelTest extends TestCase {
         'other_descript' => '',
         'opinion'        => ''
     );
-
 
     public function testValidation() {
         $input_value = array(

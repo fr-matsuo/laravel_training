@@ -3,7 +3,33 @@
 class FormControllerTest extends TestCase {
 
     public function testNormalAction() {
-       $response = $this->action('GET', 'FormController@getIndex');
+        $right_input = array(
+            'name_first'     => 'nameFirst',
+            'name_last'      => 'nameLast',
+            'sex'            => '男性',
+            'post_first'     => '000',
+            'post_last'      => '1111',
+            'prefecture'     => 1,
+            'mail_address'   => 'no@signed.com',
+            'hobby'          => array('音楽鑑賞'),
+            'other_descript' => '',
+            'opinion'        => ''
+        );
+
+        $response = $this->action('GET', 'FormController@getIndex');
+        $this->assertEquals('index', $response->original->getName());
+
+        $response = $this->action('GET', 'FormController@toForm');
+        $this->assertEquals('form', $response->original->getName());
+
+        $response = $this->action('POST', 'FormController@toForm', array(), $right_input);
+        $this->assertEquals('form', $response->original->getName());
+
+        $response = $this->action('POST', 'FormController@postFormcheck', array(), $right_input);
+        $this->assertEquals('formCheck', $response->original->getName());
+
+        $response = $this->action('POST', 'FormController@postFinish', array(), $right_input);
+        $this->assertEquals('finish', $response->original->getName());
     }
 
     public function testErrorValidation() {
@@ -19,7 +45,7 @@ class FormControllerTest extends TestCase {
             'opinion'        => ''
         );
 
-        $response = $this->action('POST', 'FormController@postFormcheck', array(), $illegal_input);
+        $response = $this->action('POST', 'FormController@postFormcheck', $illegal_input);
         $this->assertRedirectedTo('form/form');
     }
 
@@ -37,7 +63,7 @@ class FormControllerTest extends TestCase {
             'opinion'        => ''
         );
         
-        $response = $this->action('POST', 'FormController@postFinish', array(), $added_account_data);
+        $response = $this->action('POST', 'FormController@postFinish', $added_account_data);
         $this->assertEquals('form', $response->original->getName());
     }
 }
