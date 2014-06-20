@@ -66,5 +66,5 @@
 
   {{ Form::close() }}
   
-  {{{ Session::get('error_message') }}}
+  {{{ $error_message }}}
 @stop

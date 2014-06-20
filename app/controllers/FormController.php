@@ -3,6 +3,7 @@ require_once app_path()."/models/Account_Info.php";
 require_once app_path()."/models/Prefecture_Info.php";
 
 require_once "/home/ec2-user/public_html/laravel_training/app/models/Account_Info.php";
+require_once "/home/ec2-user/public_html/laravel_training/app/models/Prefecture_Info.php";
 
 class FormController extends BaseController {
 
