@@ -22,9 +22,9 @@ Route::get('users', function() {
 Route::group(array('prefix' => 'form/'), function(){
     Route::get('index',      'FormController@getIndex');
 
-    Route::get('form',       'FormController@getForm');
+    Route::get('form',       'FormController@toForm');
 
-    Route::post('form',      'FormController@postForm');
+    Route::post('form',      'FormController@toForm');
  
     Route::post('formCheck', 'FormController@postFormcheck');
  
