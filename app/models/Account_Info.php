@@ -4,7 +4,7 @@ class Account_Info extends Eloquent {
     protected $table       = 'account_info';
     protected $primaryKey  = 'user_id';
 
-    public static  function validation($input_array) {
+    public static function validation($input_array) {
         $rules = array(
             'name_first'     => array('required', 'max:50'),
             'name_last'      => array('required', 'max:50'),
