@@ -73,21 +73,10 @@ class FormModelTest extends TestCase {
         foreach ($input_value as $column_name => $column) {
             foreach ($column as $isShouldBe =>  $data_array) {
                 foreach ($data_array as $test_data) {
-                    //テストデータ表示
-                    if (!is_array($test_data)) {
-                        printf("\nis %s :%s %s",$isShouldBe, $column_name, $test_data);
-                    } else {
-                        printf("\nis %s :%s ", $isShouldBe, $column_name);
-                        foreach ($test_data as $array_data) {
-                            printf("%s", $array_data);
-                        }
-                    }
-
                     //テスト
                     $this->_checkValidation($input_value, $column_name, $isShouldBe, $test_data);
                 }
             }
-            print "\n";
         }
     }
 
@@ -106,14 +95,14 @@ class FormModelTest extends TestCase {
         //テストデータ箇所を上書き
         $input[$test_column] = $test_data;
 
-        $validator  = Account_Info::validation($input);
+        $validator  = AccountInfo::validation($input);
         $this->assertEquals($isShouldBe, !$validator->fails());
     }
 
     public function testAddRecord() {
         //追加済みのデータを追加しようとして
         try {
-            Account_Info::addRecord($this->_added_account_data); 
+            AccountInfo::addRecord($this->_added_account_data); 
         } catch (Exception $e) {
             return;
         }

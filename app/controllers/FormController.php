@@ -1,6 +1,4 @@
 <?php
-require_once app_path()."/models/Account_Info.php";
-require_once app_path()."/models/Prefecture_Info.php";
 
 class FormController extends BaseController {
 
@@ -20,7 +18,7 @@ class FormController extends BaseController {
     public function postFormcheck() {
         $this->_shareItems();
         
-        $validator = Account_Info::validation(Input::all());
+        $validator = AccountInfo::validation(Input::all());
         if($validator->fails()) {
             return Redirect::to('form/form')->withErrors($validator)->withInput();
         }
@@ -29,7 +27,7 @@ class FormController extends BaseController {
 
     public function postFinish() {
         try {
-            Account_Info::addRecord(Input::all());
+            AccountInfo::addRecord(Input::all());
         } catch (Exception $e) {
             print $e->getMessage();
             return $this->toForm('データベースに登録できませんでした。');
@@ -38,7 +36,7 @@ class FormController extends BaseController {
     }
 
     private function _shareItems() {
-        $prefectures = Prefecture_Info::getArrayAsIdKey();
+        $prefectures = PrefectureInfo::getArrayAsIdKey();
         $hobbys      = array('music' => '音楽鑑賞', 'movie' => '映画鑑賞', 'other' => 'その他');
 
         View::share('PREFECTURES', $prefectures);
