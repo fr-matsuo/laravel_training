@@ -1,6 +1,6 @@
 <?php
 
-class Account_Info extends Eloquent {
+class AccountInfo extends Eloquent {
     protected $table       = 'account_info';
     protected $primaryKey  = 'user_id';
 
@@ -42,7 +42,7 @@ class Account_Info extends Eloquent {
     }
 
     public static function addRecord($input_array) {
-        $account_info = new Account_Info;
+        $account_info = new AccountInfo;
 
         $account_info->first_name = $input_array['name_first'];
         $account_info->last_name  = $input_array['name_last'];

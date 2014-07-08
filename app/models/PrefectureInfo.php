@@ -1,11 +1,11 @@
 <?php
 
-class Prefecture_Info extends Eloquent {
+class PrefectureInfo extends Eloquent {
     protected $table      = 'prefecture_info';
     protected $primaryKey = 'pref_id';
 
     public static function getArrayAsIdKey() {
-        $mat = Prefecture_Info::all();
+        $mat = PrefectureInfo::all();
 
         $ret_array = array(0 => '--');
         foreach ($mat as $record) {
